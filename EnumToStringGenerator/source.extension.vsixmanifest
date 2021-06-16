@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" ?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="EnumToStringGenerator.1c7dea83-3557-4abb-84a6-cdd41dda99cc" Version="1.0" Language="ja-JP" Publisher="Koki Okoshi" />
+        <DisplayName>EnumToStringGenerator</DisplayName>
+        <Description xml:space="preserve">enumを含むC#ソースファイルから、文字列版のクラスファイルと、相互変換を補助するメソッドを出力する拡張機能です。
+この拡張機能の目的は、難読化によって宣言時のenum名が破棄される場合に、元のenum名を保持する方法を提供することです。</Description>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 17.0)" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    </Assets>
+</PackageManifest>
