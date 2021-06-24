@@ -53,7 +53,7 @@ namespace EnumToStringGenerator
                 // MEMO: 文字列定義
                 foreach (var enamMemberName in enumMemberNames)
                 {
-                    builder.AppendLine($"\t\tpublic const string {enamMemberName} = nameof({enumName}.{enamMemberName});");
+                    builder.AppendLine($"\t\tpublic static readonly string {enamMemberName} = nameof({enumName}.{enamMemberName});");
                 }
                 builder.AppendLine();
 
