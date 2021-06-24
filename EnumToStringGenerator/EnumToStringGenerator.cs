@@ -57,18 +57,25 @@ namespace EnumToStringGenerator
                 }
                 builder.AppendLine();
 
-                // MEMO: 紐づけ用配列
-                builder.AppendLine($"\t\tstatic readonly string[] _strings = new string[]");
+                // MEMO: 変換関数
+                builder.AppendLine($"\t\tpublic static string ToConstString(this {enumName} self)");
                 builder.AppendLine($"\t\t{{");
+                builder.AppendLine($"\t\t\tswitch(self)");
+                builder.AppendLine($"\t\t\t{{");
                 foreach (var enamMemberName in enumMemberNames)
                 {
-                    builder.AppendLine($"\t\t\t{enamMemberName},");
+                    builder.AppendLine($"\t\t\t\tcase {enumName}.{enamMemberName}:");
+                    builder.AppendLine($"\t\t\t\t\treturn {enamMemberName};");
                 }
-                builder.AppendLine($"\t\t}};");
-                builder.AppendLine();
 
-                // MEMO: 変換関数
-                builder.AppendLine($"\t\tpublic static string ToConstString(this {enumName} self) => _strings[(int)self];");
+                builder.AppendLine($"\t\t\t\tdefault:");
+                builder.AppendLine($"#if DEBUG");
+                builder.AppendLine($"\t\t\t\t\tthrow new ArgumentOutOfRangeException(nameof(self));");
+                builder.AppendLine($"#else");
+                builder.AppendLine($"\t\t\t\t\treturn string.Empty;");
+                builder.AppendLine($"#endif");
+                builder.AppendLine($"\t\t\t}}");
+                builder.AppendLine($"\t\t}}");
                 builder.AppendLine();
 
                 // MEMO: 名前空間とクラス名
